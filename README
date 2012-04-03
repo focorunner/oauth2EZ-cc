@@ -1,0 +1,28 @@
+DISCLAIMERS:
+1) This script is offered as-is with no direct support.
+2) It is the responsibility of the developer to install and integrate
+the script into their applications.
+3) The script does not handle exceptions (It's minimal).
+
+This PHP script is designed to demonstrate Oauth 2.0 with Constant
+Contact with a little code as possible.
+
+To use the script, copy it into a web directory configured with PHP, 
+set the $api_key and $client_secret variables to match those of your 
+API, and set the $redirect_uri value to the full uri for this script, 
+including the script filename. In order for Oauth 2 to succeed, the 
+redirect_uri in your Constant Contact API settings needs to match this 
+redirect_uri value exactly.
+
+The script includes a simple Cookie-based login/logout capability. It 
+tests for authentication cookie, and if it is not present, proceeds 
+with Oauth 2 authentication, and sets an authentication cookie that 
+stores username and access token. The logout function calls a small
+external deauth.php script that sets the cookie expiry to the past to 
+destroy the cookie, then redirects to this script again and restarts 
+Oauth 2 sequence.
+
+Note, the destruction of the locally stored authentication cookie 
+doesn't invalidate the access token that was stored in it, but once 
+you obtain a new token with the same CTCT account login credentials on 
+this API Key, the previous token will be invalid.
