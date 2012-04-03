@@ -23,7 +23,7 @@ else {
 		$returns = file_get_contents("https://oauth2.constantcontact.com/oauth2/oauth/token?grant_type=authorization_code&client_id=".$api_key."&client_secret=".$client_secret."&code=".$_GET['code']."&redirect_uri=".$redirect_uri);
 		$oauthdata = json_decode($returns);
 
-		// Set array cookie containing username and access token...
+		// Set  cookie containing access token (could make it an array cookie with username and access token)
 		setcookie("ctctauth",$oauthdata->{'access_token'},time() + ($oauthdata->{'expires_in'}));
 		
 		// Refresh page
