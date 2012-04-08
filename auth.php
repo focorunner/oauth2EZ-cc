@@ -1,14 +1,14 @@
 <?php
-/*
+/*a
 This PHP script is designed to demonstrate Oauth 2.0 with Constant Contact with as little code as possible.
 This example sets a cookie to store the token, and only starts the authentication flow if the the cookie 
 doesn't exist, but the same thing can be accomplished with a session variable.
 */
 
 // SET THESE VALUES
-$api_key = "Your_API_Key"; // From developer.constantcontact.com
-$client_secret = "Your_Client_Secret"; // From developer.constantcontact.com
-$redirect_uri = 'URI_of_this_script'; // Must match redirect uri for API Key, as set on developer.constantcontact.com
+$api_key = "your_api_key"; // From developer.constantcontact.com
+$client_secret = "your_client_secret"; // From developer.constantcontact.com
+$redirect_uri = 'uri_to_this_script'; // Must match redirect uri for API Key, as set on developer.constantcontact.com
 
 // If already authenticated (authentication cookie exists), welcome user echo logout link
 if (isset($_COOKIE['ctctauth'])) {
@@ -27,13 +27,13 @@ else {
 		setcookie("ctctauth",$oauthdata->{'access_token'},time() + ($oauthdata->{'expires_in'}));
 		
 		// Refresh page
-		echo '<meta http-equiv="refresh" content="0;url=auth.php">';
+		header('location: auth.php');
 	}
 	
 	// If not an OAuth callback request, redirect to authroize/grant access with Constant Contact
 	else {
-		$codeurl = "https://oauth2.constantcontact.com/oauth2/oauth/siteowner/authorize?response_type=code&amp;client_id=".$api_key."&amp;redirect_uri=".$redirect_uri;
-		echo '<meta http-equiv="refresh" content="0;url='.$codeurl.'">';
+		$codeurl = "https://oauth2.constantcontact.com/oauth2/oauth/siteowner/authorize?response_type=code&client_id=".$api_key."&redirect_uri=".$redirect_uri;
+		header('location: '.$codeurl);
 	}
 }
 ?>
