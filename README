@@ -21,8 +21,3 @@ stores username and access token. The logout function calls a small
 external deauth.php script that sets the cookie expiry to the past to 
 destroy the cookie, then redirects to this script again and restarts 
 Oauth 2 sequence.
-
-Note, the destruction of the locally stored authentication cookie 
-doesn't invalidate the access token that was stored in it, but once 
-you obtain a new token with the same CTCT account login credentials on 
-this API Key, the previous token will be invalid.
