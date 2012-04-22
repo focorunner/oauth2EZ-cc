@@ -21,3 +21,11 @@ stores username and access token. The logout function calls a small
 external deauth.php script that sets the cookie expiry to the past to 
 destroy the cookie, then redirects to this script again and restarts 
 Oauth 2 sequence.
+
+In some cases, url_file_open access may not be enabled on shared
+webhost services. This is required for this script. If you get an 
+error incidating that url file access is disabled in your server 
+configuration. This can usually be remedied by adding a local 
+php.ini file into your root web directly, including the line:
+
+allow_url_fopen = 'on'.
